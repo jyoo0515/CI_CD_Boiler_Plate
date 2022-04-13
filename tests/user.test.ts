@@ -97,6 +97,13 @@ describe('Endpoints after login', () => {
     });
   });
 
+  describe('[GET] /api/users/me', () => {
+    test('should return logged in user info', async () => {
+      const res = await agent.get('/api/users/me');
+      expect(res.body).toEqual({ id: 1, username: 'test', firstName: 'John', lastName: 'Doe' });
+    });
+  });
+
   describe('[GET] /api/users/logout', () => {
     test('should delete jwt when logged in', async () => {
       const res = await agent.get('/api/users/logout');
