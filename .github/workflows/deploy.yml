@@ -28,7 +28,9 @@
 #         working-directory: ./client
 #         run: |
 #           yarn install
-#           CI='' yarn build
+#           CI='' REACT_APP_API_URL=$url yarn build
+#         env:
+#           url: ${{ secrets.API_URL }}
 
 #       - name: Build server
 #         run: |
