@@ -1,15 +1,12 @@
 import { useSetRecoilState } from 'recoil';
-import authState, { User } from './atom';
-import { useMemo } from 'react';
+import authAtom from './atom';
 
-export default function useAuthActions() {
-  const set = useSetRecoilState(authState);
+function useAuthAction() {
+  const setAuthState = useSetRecoilState(authAtom);
 
-  return useMemo(
-    () => ({
-      authorize: (user: User) => set({ user }),
-      logout: () => set({ user: null }),
-    }),
-    [set]
-  );
+  const authorize = () => setAuthState({ authenticated: true });
+  const logout = () => setAuthState({ authenticated: false });
+  return { authorize, logout };
 }
+
+export default useAuthAction;

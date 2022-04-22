@@ -1,21 +1,14 @@
 import { atom } from 'recoil';
 
-export interface User {
-  id: number;
-  username: string;
-  firstname: string;
-  lastname: string;
+interface Auth {
+  authenticated: boolean;
 }
 
-interface AuthState {
-  user: User | null;
-}
-
-const authState = atom<AuthState>({
-  key: 'authState',
+const authAtom = atom<Auth>({
+  key: 'authAtom',
   default: {
-    user: null,
+    authenticated: false,
   },
 });
 
-export default authState;
+export default authAtom;
